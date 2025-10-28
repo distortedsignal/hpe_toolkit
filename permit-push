@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if (( ! ${+1} )); then
+  echo "Must be called with a remote."
+  exit 1
+fi
+
+PULL_URL="$(git remote get-url $1)"
+git remote set-url --push $1 $PULL_URL

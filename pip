@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+source ~/.virtualenvs/base_python/bin/activate
+
+python -m pip $@
+
+deactivate

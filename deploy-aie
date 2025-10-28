@@ -1,0 +1,30 @@
+export SSH_PASSWORD=$(cat ~/.ssh/sshpassword)
+export EZUA_HOME=/Users/tomkelley/Documents/src/ezdeployer
+echo cd $EZUA_HOME/ua/tooling/ansible
+cd $EZUA_HOME/ua/tooling/ansible
+echo "Starting to deploy aie at $(date)"
+START_TIME=$(($(date +%s) / 60))
+echo ansible-playbook $ARGS -i hosts playbooks/install.yml --become-user=$USER
+ansible-playbook $ARGS -i hosts playbooks/install.yml --become-user=$USER
+
+kubectl \
+    patch \
+        deployment \
+            --kubeconfig $EZUA_HOME/ua/tooling/scripts/worker_kubeconfig \
+            -n istio-system \
+        istio-ingressgateway \
+--patch "$(cat <<EOF
+spec:
+  template:
+    spec:
+      containers:
+      - name: istio-proxy
+        ports:
+        - containerPort: 8443
+          protocol: TCP
+          hostPort: 443
+EOF
+)"
+END_TIME=$(($(date +%s) / 60))
+
+echo "Install completed in $((END_TIME - START_TIME)) minutes"

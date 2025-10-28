@@ -1,0 +1,23 @@
+function install_rsync() {
+    until sshexp $1 "sudo dnf install -y rsync" ; do
+        echo "Waiting for ssh to $1..." ;
+    done
+}
+
+function upgrade_vm() {
+    until sshexp $1 "sudo dnf -y upgrade --refresh" ; do
+        echo "Upgrade failed. Reattempting...";
+    done
+}
+
+function reboot_vm() {
+    sshexp $1 "sudo reboot"
+}
+
+VM_LIST=("10.227.210.149" "10.227.210.150" "10.227.212.38" "10.227.212.49" "10.227.212.51")
+
+for VM in "${VM_LIST[@]}"; do
+    install_rsync $VM ;
+    upgrade_vm $VM ;
+    reboot_vm $VM ;
+done

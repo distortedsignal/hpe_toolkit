@@ -1,0 +1,6 @@
+START_TIME=$(perl -MTime::HiRes -e 'print int(Time::HiRes::time() * 1000) . "\n";')
+$@
+END_TIME=$(perl -MTime::HiRes -e 'print int(Time::HiRes::time() * 1000) . "\n";')
+TIME_DIFF=$(echo "scale=3 ; ($END_TIME - $START_TIME) / 1000" | bc)
+echo "Command completed in $TIME_DIFF seconds."
+

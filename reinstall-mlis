@@ -1,0 +1,17 @@
+export MLIS_LOCATION="/Users/tomkelley/Documents/src/ezaddon-mlis"
+export KUBECONFIG="/Users/tomkelley/Documents/src/ezdeployer/ua/tooling/scripts/worker_kubeconfig"
+export VENV_DIR="/Users/tomkelley/.virtualenvs/mlis"
+
+pushd $MLIS_LOCATION
+
+source $VENV_DIR/bin/activate
+
+make aie-delete
+kubectl delete pvc -n mlis aioli-db-pvc-hpe-mlis --kubeconfig $KUBECONFIG
+make install
+make release-local
+make aie-install
+
+deactivate
+
+popd

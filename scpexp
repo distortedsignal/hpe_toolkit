@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+sshpass -f ~/.ssh/sshpassword rsync --compress --progress -h $1 $2
