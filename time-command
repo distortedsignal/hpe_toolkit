@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 START_TIME=$(perl -MTime::HiRes -e 'print int(Time::HiRes::time() * 1000) . "\n";')
 $@
 END_TIME=$(perl -MTime::HiRes -e 'print int(Time::HiRes::time() * 1000) . "\n";')

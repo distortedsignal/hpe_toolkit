@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 if [[ $# -eq 1 ]]; then
   sshpass -f ~/.ssh/sshpassword ssh $1

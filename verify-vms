@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 function wait_for_vm_ping() {
     SLEEP_TIME=1
     until ping -c 1 -W 5000 $1 > /dev/null ; do

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 export SSH_PASSWORD=$(cat ~/.ssh/sshpassword)
 export EZUA_HOME=/Users/tomkelley/Documents/src/ezdeployer
 echo cd $EZUA_HOME/ua/tooling/ansible

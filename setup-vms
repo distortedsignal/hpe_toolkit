@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 function install_rsync() {
     until sshexp $1 "sudo dnf install -y rsync" ; do
         echo "Waiting for ssh to $1..." ;
