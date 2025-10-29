@@ -1,0 +1,5 @@
+.go
+.gofmt
+disable-zscaler
+rebar3
+rebar3-erlang21
