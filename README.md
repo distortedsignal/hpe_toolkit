@@ -1,4 +1,4 @@
-# hpe_toolkit
+# HPE Toolkit
 A set of tools I use at my job at HPE
 
 ## Tools Explanation
