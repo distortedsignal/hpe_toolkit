@@ -14,7 +14,7 @@ function wait_for_vm_ssh() {
     until sshexp $1 "exit 0" ; do
         echo "Waiting for ssh to $1..." ;
         sleep $SLEEP_TIME
-        SLEEP_TIME=$((SLEEP_TIME + SLEEP_TIME))
+        SLEEP_TIME=$(($SLEEP_TIME + $SLEEP_TIME))
     done
 }
 
