@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-export MLIS_LOCATION="/Users/tomkelley/Documents/src/ezaddon-mlis"
-export KUBECONFIG="/Users/tomkelley/Documents/src/ezdeployer/ua/tooling/scripts/worker_kubeconfig"
-export VENV_DIR="/Users/tomkelley/.virtualenvs/mlis"
+export MLIS_LOCATION="~/Documents/src/ezaddon-mlis"
+export KUBECONFIG="~/Documents/src/ezdeployer/ua/tooling/scripts/worker_kubeconfig"
+export VENV_DIR="~/Documents/.virtualenvs/mlis"
 
 pushd $MLIS_LOCATION
 

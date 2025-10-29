@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 export SSH_PASSWORD=$(cat ~/.ssh/sshpassword)
-export EZUA_HOME=/Users/tomkelley/Documents/src/ezdeployer
+export EZUA_HOME=~/Documents/src/ezdeployer
 echo cd $EZUA_HOME/ua/tooling/ansible
 cd $EZUA_HOME/ua/tooling/ansible
 echo ansible-playbook $ARGS -i hosts playbooks/tear_down.yml --become-user=$USER
