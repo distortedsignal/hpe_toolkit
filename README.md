@@ -165,22 +165,26 @@ Warning: Permanently added '10.227.210.150' (ED25519) to the list of known hosts
 ```mermaid
 flowchart TD
     brew-update --> brew
-    deploy-aie --> ansible-playbook
-    deploy-aie --> kubectl
+
     permit-push --> git
     prevent-push --> git
+
+    teardown-aie --> ansible-playbook
+    deploy-aie --> ansible-playbook
+    deploy-aie --> kubectl
     reinstall-mlis --> make
     reinstall-mlis --> kubectl
+    test-mlis --> make
+
     scpexp --> sshpass
     scpexp --> rsync
     setup-vms --> sshexp
     sshexp --> sshpass
-    teardown-aie --> ansible-playbook
-    test-mlis --> make
-    time-command --> perl
-    time-command --> bc
     verify-vms --> ping
     verify-vms --> sshexp
+
+    time-command --> perl
+    time-command --> bc
 ```
 
 </details>
