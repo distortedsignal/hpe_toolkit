@@ -3,7 +3,7 @@
 function wait_for_vm_ping() {
     SLEEP_TIME=1
     until ping -c 1 -W 5000 $1 > /dev/null ; do
-        echo "Waiting for pingback from $1..." ;
+        echo "Waiting for $SLEEP_TIME seconds to retest pingback from $1..." ;
         sleep $SLEEP_TIME
         SLEEP_TIME=$((SLEEP_TIME + SLEEP_TIME))
     done
@@ -12,7 +12,7 @@ function wait_for_vm_ping() {
 function wait_for_vm_ssh() {
     SLEEP_TIME=1
     until sshexp $1 "exit 0" ; do
-        echo "Waiting for ssh to $1..." ;
+        echo "Waiting for $SLEEP_TIME seconds to ssh to $1..." ;
         sleep $SLEEP_TIME
         SLEEP_TIME=$(($SLEEP_TIME + $SLEEP_TIME))
     done
