@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-mv .go go
-mv .gofmt gofmt
+mv ~/.bin/.go ~/.bin/go
+mv ~/.bin/.gofmt ~/.bin/gofmt

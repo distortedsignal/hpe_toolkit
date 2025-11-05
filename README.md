@@ -160,6 +160,25 @@ Warning: Permanently added '10.227.210.150' (ED25519) to the list of known hosts
 
 </details>
 
+### `enable/disable-nonsys-go`
+
+A 0-argument script to enable or disable the system go install.
+
+<details open><summary>Usage</summary>
+
+```sh
+> go version
+go version go1.25.3 darwin/amd64
+> enable-nonsys-go 
+> go version
+go version go1.24.9 darwin/amd64
+> disable-nonsys-go 
+> go version
+go version go1.25.3 darwin/amd64
+```
+
+</details>
+
 <details open><summary><h2>Dependency Flowchart</h2></summary>
 
 ```mermaid
