@@ -179,6 +179,18 @@ go version go1.25.3 darwin/amd64
 
 </details>
 
+### `setup-socks5`
+
+A 1-argument script to setup a socks5 proxy to a specific host.
+
+<details open><summary>Usage</summary>
+
+```sh
+> setup-socks5 $ip-address...
+```
+
+</details>
+
 <details open><summary><h2>Dependency Flowchart</h2></summary>
 
 ```mermaid
