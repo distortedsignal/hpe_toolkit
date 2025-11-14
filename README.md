@@ -181,12 +181,12 @@ go version go1.25.3 darwin/amd64
 
 ### `setup-socks5`
 
-A 1-argument script to setup a socks5 proxy to a specific host.
+A 2-argument script to setup a socks5 proxy to a specific host on a specific port on the localhost.
 
 <details open><summary>Usage</summary>
 
 ```sh
-> setup-socks5 $ip-address...
+> setup-socks5 $ip-address $localhost-port
 ```
 
 </details>

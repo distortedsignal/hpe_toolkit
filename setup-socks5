@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-sshpass -f ~/.ssh/sshpassword ssh -D 12345 $1
+sshpass -f ~/.ssh/sshpassword ssh -D $2 $1
