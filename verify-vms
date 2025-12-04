@@ -1,26 +1,33 @@
 #!/usr/bin/env zsh
 
-function wait_for_vm_ping() {
+function backoff_function() {
     SLEEP_TIME=1
-    until ping -c 1 -W 5000 $1 > /dev/null ; do
-        echo "Waiting for $SLEEP_TIME seconds to retest pingback from $1..." ;
+    MOD_COUNTER=0
+    ELLIPSIS_LIST=("..." ".." "..." "....")
+    until eval $1 ; do
+        CURRENT_ELLIPSIS=${ELLIPSIS_LIST[$(( (MOD_COUNTER % 4) + 1 ))]}
+        echo "Waiting for $SLEEP_TIME seconds to $2$CURRENT_ELLIPSIS" ;
         sleep $SLEEP_TIME
         SLEEP_TIME=$((SLEEP_TIME + SLEEP_TIME))
+        MOD_COUNTER=$((MOD_COUNTER + 1))
+        if (( SLEEP_TIME > 15 )); then
+            SLEEP_TIME=15 ; # Don't sleep longer than 15 seconds.
+        fi
     done
 }
 
+function wait_for_vm_ping() {
+    backoff_function "ping -c 1 -W 5000 $1 > /dev/null" "retest pingback from $1"
+}
+
 function wait_for_vm_ssh() {
-    SLEEP_TIME=1
-    until sshexp $1 "exit 0" ; do
-        echo "Waiting for $SLEEP_TIME seconds to ssh to $1..." ;
-        sleep $SLEEP_TIME
-        SLEEP_TIME=$(($SLEEP_TIME + $SLEEP_TIME))
-    done
+    backoff_function "sshexp $1 \"exit 0\" 2> /dev/null" "ssh to $1"
 }
 
 VM_LIST=("10.227.210.149" "10.227.210.150" "10.227.212.38" "10.227.212.49" "10.227.212.51")
 
 for VM in "${VM_LIST[@]}"; do
+    echo "Verifying $VM..." ;
     wait_for_vm_ping "$VM" ;
     wait_for_vm_ssh "$VM" ;
 done
